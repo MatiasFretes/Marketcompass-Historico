@@ -15,7 +15,9 @@ public class DB_RecomendacionService {
     }
 
     public void insertarRecomendacion(DB_Recomendacion recomendacion) {
+        System.out.println("[Historial_Recomendaciones] - Log: Se procede a realizar un INSERT en db_recomendacion de: " + recomendacion.toString());
         repository.insert(recomendacion);
+        System.out.println("[Historial_Recomendaciones] - Log: INSERT Exitoso");
     }
 
     public List<DB_Recomendacion> consultarTodasRecomendaciones() {
