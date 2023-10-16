@@ -3,25 +3,19 @@ package observador;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import db.DatabaseConnector;
 import model.DB_Recomendacion;
 import observable.RecomendadorObservable;
-import repository.DB_RecomendacionRepository;
-import service.DB_RecomendacionService;
+import service.HistoricoRecomendacionesService;
 
 
 public class ObservadorDeRecomendaciones implements Observer {
     private RecomendadorObservable recomendadorObservable;
-    private DatabaseConnector dbConnector;
-    private DB_RecomendacionService recomendacionesService;
+    private HistoricoRecomendacionesService recomendacionesService;
 
     public ObservadorDeRecomendaciones(RecomendadorObservable recomendadorObservable) {
         this.recomendadorObservable = recomendadorObservable;
         recomendadorObservable.addObserver(this);
-        
-        dbConnector = new DatabaseConnector();
-        DB_RecomendacionRepository recomendacionRepository = new DB_RecomendacionRepository(dbConnector.getConnection());
-        recomendacionesService = new DB_RecomendacionService(recomendacionRepository);
+        recomendacionesService = new HistoricoRecomendacionesService();
     }
 
     @Override

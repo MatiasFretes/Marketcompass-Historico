@@ -13,14 +13,17 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
+import db.DatabaseConnector;
 import model.DB_Recomendacion;
 
 public class DB_RecomendacionRepository {
 	
+	private DatabaseConnector dbConnector;
 	private Connection connection;
 
-    public DB_RecomendacionRepository(Connection connection) {
-        this.connection = connection;
+    public DB_RecomendacionRepository() {
+        dbConnector = new DatabaseConnector();      
+        this.connection = dbConnector.getConnection();
     }
 
     public void insert(DB_Recomendacion recomendacion) {
