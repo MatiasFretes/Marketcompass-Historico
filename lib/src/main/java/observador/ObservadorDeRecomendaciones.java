@@ -29,9 +29,9 @@ public class ObservadorDeRecomendaciones implements Observer {
     	System.out.println("[Historial_Recomendaciones] - Log: Se observa una nueva recomendacion, se procede a guardardo en el historico.");
         if (o instanceof RecomendadorObservable && arg instanceof RecomendadorObservable) {
             RecomendadorObservable recomendadorObservable = (RecomendadorObservable) arg;
-            String mercadoRecomendado = recomendadorObservable.getMercadoRecomendado().getNombre();
-            List<String> peticionUsuario = recomendadorObservable.getProductos();
-            String criterioUtilizado = recomendadorObservable.getCriterioUtilizado().getClass().getSimpleName();
+            String mercadoRecomendado = recomendadorObservable.mercadoRecomendado;
+            List<String> peticionUsuario = recomendadorObservable.productos;
+            String criterioUtilizado = recomendadorObservable.criterioUtilizado;
             DB_Recomendacion nuevaRecomendacion = new DB_Recomendacion(mercadoRecomendado, peticionUsuario, criterioUtilizado);
             recomendacionesService.insertarRecomendacion(nuevaRecomendacion);
         }
