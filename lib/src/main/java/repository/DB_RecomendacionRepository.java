@@ -25,11 +25,12 @@ public class DB_RecomendacionRepository {
 
     public void insert(DB_Recomendacion recomendacion) {
         try {
-            String sql = "INSERT INTO db_recomendacion (mercado_nombre, peticion_usuario) VALUES (?, ?)";
+            String sql = "INSERT INTO db_recomendacion (mercado_nombre, peticion_usuario, criterio_nombre) VALUES (?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, recomendacion.getMercadoNombre());
             String listaComoJSON = new Gson().toJson(recomendacion.getPeticionUsuario());
             statement.setString(2, listaComoJSON);
+            statement.setString(3, recomendacion.getCriterioNombre());
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {
@@ -46,6 +47,7 @@ public class DB_RecomendacionRepository {
             while (resultSet.next()) {
                 String mercadoNombre = resultSet.getString("mercado_nombre");
                 String peticionUsuarioJSON = resultSet.getString("peticion_usuario");
+                String criterioNombre = resultSet.getString("criterio_nombre");
                 List<String> peticionUsuario = new ArrayList<>();
                 try {
                     JsonArray jsonArray = JsonParser.parseString(peticionUsuarioJSON).getAsJsonArray();
@@ -56,7 +58,7 @@ public class DB_RecomendacionRepository {
                     e.printStackTrace();
                 }
 
-                DB_Recomendacion recomendacion = new DB_Recomendacion(mercadoNombre, peticionUsuario);
+                DB_Recomendacion recomendacion = new DB_Recomendacion(mercadoNombre, peticionUsuario, criterioNombre);
                 recomendaciones.add(recomendacion);
             }
             statement.close();

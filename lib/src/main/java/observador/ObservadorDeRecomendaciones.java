@@ -1,5 +1,6 @@
 package observador;
 
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import db.DatabaseConnector;
@@ -29,7 +30,9 @@ public class ObservadorDeRecomendaciones implements Observer {
         if (o instanceof RecomendadorObservable && arg instanceof RecomendadorObservable) {
             RecomendadorObservable recomendadorObservable = (RecomendadorObservable) arg;
             String mercadoRecomendado = recomendadorObservable.getMercadoRecomendado().getNombre();
-            DB_Recomendacion nuevaRecomendacion = new DB_Recomendacion(mercadoRecomendado, recomendadorObservable.getProductos());
+            List<String> peticionUsuario = recomendadorObservable.getProductos();
+            String criterioUtilizado = recomendadorObservable.getCriterioUtilizado().getClass().getSimpleName();
+            DB_Recomendacion nuevaRecomendacion = new DB_Recomendacion(mercadoRecomendado, peticionUsuario, criterioUtilizado);
             recomendacionesService.insertarRecomendacion(nuevaRecomendacion);
         }
     }
