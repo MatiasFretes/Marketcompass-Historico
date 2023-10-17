@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import extensible.FiltradorPorCriterio;
@@ -40,6 +39,7 @@ public class US5 {
 	private List<String> productosRecomendados = Arrays.asList("P1", "P2");
 	private List<String> productosNoRecomendados = Arrays.asList("P1", "P3");
 
+	@SuppressWarnings("deprecation")
 	@BeforeEach
     void setUp() {
         observadorMock = Mockito.mock(ObservadorDeRecomendaciones.class);
@@ -50,15 +50,11 @@ public class US5 {
         core.recomendador.recomendadorObservable.addObserver(observadorMock); 
         criterio = core.criterios.stream().findFirst().get();
         repositorioMock = mock(DB_RecomendacionRepository.class);
-        service.setRepository(repositorioMock);
+        service = new HistoricoRecomendacionesService(repositorioMock);
         db_recomendaciones.addAll(Arrays.asList(new DB_Recomendacion("M1", Arrays.asList("P1", "P2"), "C1"), new DB_Recomendacion("M2", Arrays.asList("P2", "P3"), "C2")));
     }
     
-    @BeforeAll
-    static void setUpService() {
-        service = new HistoricoRecomendacionesService();
-    }
-    
+   
     @Test
     void CA1_ObservarNuevaRecomendacion(){
         core.obtenerRecomendacion(criterio, productoExistente);

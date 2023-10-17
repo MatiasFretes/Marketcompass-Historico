@@ -13,6 +13,10 @@ public class HistoricoRecomendacionesService{
 	public HistoricoRecomendacionesService() {
 		repository = new DB_RecomendacionRepository();
 	}
+	
+	public HistoricoRecomendacionesService(DB_RecomendacionRepository repository) {
+		this.repository = repository;
+	}
 
     public void insertarRecomendacion(DB_Recomendacion recomendacion) {
     	if (recomendacion != null && recomendacion.esValida())
@@ -29,8 +33,5 @@ public class HistoricoRecomendacionesService{
         return respuesta;
     }
 
-	public void setRepository(DB_RecomendacionRepository repository) {
-		this.repository = repository;
-	}
 }
 
