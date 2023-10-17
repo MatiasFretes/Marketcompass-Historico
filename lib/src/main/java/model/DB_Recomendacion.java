@@ -40,7 +40,13 @@ public class DB_Recomendacion {
 	public void setCriterioNombre(String criterioNombre) {
 		this.criterioNombre = criterioNombre;
 	}
-
+	
+	public boolean esValida() {
+	    return mercadoNombre != null && !mercadoNombre.isEmpty() &&
+	           peticionUsuario != null && !peticionUsuario.isEmpty() &&
+	           criterioNombre != null && !criterioNombre.isEmpty();
+	}
+	
 	@Override
 	public String toString() {
 		return "DB_Recomendacion [mercadoNombre=" + mercadoNombre + ", peticionUsuario=" + peticionUsuario

@@ -15,9 +15,8 @@ public class HistoricoRecomendacionesService{
 	}
 
     public void insertarRecomendacion(DB_Recomendacion recomendacion) {
-        System.out.println("[Historial_Recomendaciones] - Log: Se procede a realizar un INSERT en db_recomendacion de: " + recomendacion.toString());
-        repository.insert(recomendacion);
-        System.out.println("[Historial_Recomendaciones] - Log: INSERT Exitoso");
+    	if (recomendacion != null && recomendacion.esValida())
+            repository.insert(recomendacion);
     }
 
     public List<DB_Recomendacion> consultarTodasRecomendaciones() {
@@ -25,10 +24,8 @@ public class HistoricoRecomendacionesService{
     } 
    
     public List<DB_Recomendacion> consultarRecomendacionesPorProductosYCriterio(List<String> productos, String criterio) {
-        System.out.println("[Historial_Recomendaciones] - Log: Se procede a realizar un SELECT en db_recomendacion para buscar los productos: " + productos.toString() + " y el criterio: " + criterio);
         List<DB_Recomendacion> respuesta = consultarTodasRecomendaciones().stream()
             .filter(recomendacion -> recomendacion.getPeticionUsuario().containsAll(productos) && recomendacion.getPeticionUsuario().size() == productos.size() && recomendacion.getCriterioNombre() != null && recomendacion.getCriterioNombre().equals(criterio)).collect(Collectors.toList());
-        System.out.println("[Historial_Recomendaciones] - Log: Se encontraron las recomendaciones: " + respuesta.toString());
         return respuesta;
     }
 
