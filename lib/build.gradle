@@ -39,5 +39,13 @@ dependencies {
     
     implementation 'com.github.MatiasFretes:Marketcompass-Core:6e36d20c0c' 
     
+}
+
+test {
+    useJUnitPlatform() // Use JUnit 5 platform for running tests.
     
+    reports {
+        junitXml.enabled = true
+        junitXml.destination = file("$buildDir/test-results/test")
+    }
 }
