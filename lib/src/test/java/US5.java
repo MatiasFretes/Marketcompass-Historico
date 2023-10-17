@@ -1,5 +1,3 @@
-
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import extensible.FiltradorPorCriterio;
@@ -11,14 +9,12 @@ import repository.DB_RecomendacionRepository;
 import service.HistoricoRecomendacionesService;
 import observable.RecomendadorObservable;
 import org.mockito.Mockito;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-
 import java.util.Arrays;
 import java.util.List;
 
