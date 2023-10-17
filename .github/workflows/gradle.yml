@@ -28,7 +28,26 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+    - name: Give execute permission to gradlew
+      run: chmod +x gradlew
+        
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
+      run: ./gradlew build
+
+    - name: Archive Test Results
+      uses: actions/upload-artifact@v2
       with:
-        arguments: build
+        name: test-results
+        path: lib/build/reports/tests/test/
+  
+    - name: Download Test Results
+      uses: actions/download-artifact@v2
+      with:
+        name: test-results
+        path: test-results
+    
+    - name: Publish Test Results as Github Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.TOKEN_MARKETCOMPASS }}
+        publish_dir: ./test-results/
