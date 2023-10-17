@@ -31,5 +31,9 @@ public class HistoricoRecomendacionesService{
         System.out.println("[Historial_Recomendaciones] - Log: Se encontraron las recomendaciones: " + respuesta.toString());
         return respuesta;
     }
+
+	public void setRepository(DB_RecomendacionRepository repository) {
+		this.repository = repository;
+	}
 }
 

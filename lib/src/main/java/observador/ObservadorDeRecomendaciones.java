@@ -9,8 +9,8 @@ import service.HistoricoRecomendacionesService;
 
 
 public class ObservadorDeRecomendaciones implements Observer {
-    private RecomendadorObservable recomendadorObservable;
-    private HistoricoRecomendacionesService recomendacionesService;
+    public RecomendadorObservable recomendadorObservable;
+    public HistoricoRecomendacionesService recomendacionesService;
 
     public ObservadorDeRecomendaciones(RecomendadorObservable recomendadorObservable) {
         this.recomendadorObservable = recomendadorObservable;

@@ -19,7 +19,7 @@ import model.DB_Recomendacion;
 public class DB_RecomendacionRepository {
 	
 	private DatabaseConnector dbConnector;
-	private Connection connection;
+	public Connection connection;
 
     public DB_RecomendacionRepository() {
         dbConnector = new DatabaseConnector();      

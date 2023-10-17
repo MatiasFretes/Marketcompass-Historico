@@ -1,0 +1,16 @@
+[
+  {
+    "nombre": "M1",
+    "productos": [
+      "P1",
+      "P2",
+	  "P3"    
+	]
+  },
+  {
+    "nombre": "M2",
+    "productos": [
+      "P3"
+    ]
+  }
+]
